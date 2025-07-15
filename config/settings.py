@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-t*$_n8ymz2@hda8tf3&9!0l5o6^2o=@32r%m@qb$&5-1nrc=ub
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
 
 # Application definition
@@ -136,5 +136,5 @@ EMAIL_USE_TLS = config('EMAIL_USE_TLS').lower() in ['true', '1', 'yes']
 
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
